@@ -23,10 +23,21 @@ namespace LetsLend.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Item()
         {
             return View();
         }
+
+        public IActionResult Borrower()
+        {
+            return View();
+        }
+
+        public IActionResult Reports()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
