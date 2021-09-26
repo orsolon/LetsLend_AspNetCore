@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Cadastro";
+}
+
+@model Borrower
+
+<h2 class="text-center">Cadastro</h2>
+<div class="container">
+    <form method="post">
+
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-group">
+            <label asp-for="Name">Nome:</label>
+            <input type="text" class="form-control">
+            <span asp-validation-for="Name" class="form-text text-muted"></span>  
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Telefone">Telefone:</label>
+            <input type="text" class="form-control">
+            <span asp-validation-for="Telefone" class="form-text text-muted"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input type="email" class="form-control">
+            <span asp-validation-for="Email" class="form-text text-muted"></span>
+        </div>
+        <button type="submit" class="btn btn-outline-dark">Submit</button>
+    </form>
+</div>

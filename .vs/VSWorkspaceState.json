@@ -2,9 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\LetsLend",
+    "\\LetsLend\\Models",
     "\\LetsLend\\Views",
     "\\LetsLend\\Views\\Shared"
   ],
-  "SelectedNode": "\\LetsLend\\Views",
+  "SelectedNode": "\\LetsLend\\Models",
   "PreviewInSolutionExplorer": false
 }

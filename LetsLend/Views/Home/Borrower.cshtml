@@ -2,8 +2,11 @@
     ViewData["Title"] = "Emprestimos";
 }
 
+@model IEnumerable<Borrower>
+
 <div class="text-center">
-    <h1 class="display-4">Pessoas</h1>
-    <p>Cadastrar Nova pessoa </p>
+    <h1 class="display-4">Usuário</h1>
+    <a asp-action="UserRegister">Cadastre um novo Usuário</a>
     <p>Relatório de pessoas Cadastradas:</p>
 </div>
+
