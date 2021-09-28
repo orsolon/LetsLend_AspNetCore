@@ -1,11 +1,7 @@
 ﻿using LetsLend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LetsLend.Controllers
 {
@@ -23,10 +19,39 @@ namespace LetsLend.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Item()
         {
             return View();
         }
+
+        public IActionResult Borrower()
+        {
+            return View();
+        }
+
+        public ViewResult Reports()
+        {
+            return View();
+        }
+
+        public IActionResult UserRegister()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UserRegister(Borrower user)
+        {
+            if (ModelState.IsValid)
+            {
+                UserRepository.AddUser(user);
+                return View();
+            }
+           
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

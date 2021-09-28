@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Relatórios";
+}
+
+
+<div class="text-center">
+   
+    <h1 class="display-4">Relatórios</h1>
+    <p>Qual Relatório gostaria de fazer?</p>
+</div>
+
+@functions{
+    void DisplayDate(DateTime dt)
+    {
+        <span class="date">@dt.ToString("dddd, dd MMMM yyyy")</span>
+    }
+}

@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-2 bg-light viewport" style="height: 90vh">
+            <nav class="container">
+                <h3 class="mt-4">Menu</h3>
+                <ul class="list-unstyled">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house mr-2"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Item"><i class="bi bi-app mr-2"></i>Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Borrower"><i class="bi bi-person mr-2"></i>Pessoas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Reports"> <i class="bi bi-card-checklist mr-2"></i>Relatórios</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container col-md-10 content mt-5">
+            @RenderBody()
+        </div>
+    </div>
+  
+    <footer class="border-top footer text-muted bg-secondary">
+        <div class="container text-white">
+            &copy; 2021 - LetsLend - Caio, Débora e Dênnis
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
