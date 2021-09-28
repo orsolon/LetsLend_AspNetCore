@@ -43,7 +43,12 @@ namespace LetsLend.Controllers
         [HttpPost]
         public IActionResult UserRegister(Borrower user)
         {
-            UserRepository.AddUser(user);
+            if (ModelState.IsValid)
+            {
+                UserRepository.AddUser(user);
+                return View();
+            }
+           
             return View();
         }
 

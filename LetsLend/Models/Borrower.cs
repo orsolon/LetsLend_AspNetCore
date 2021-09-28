@@ -8,7 +8,6 @@ namespace LetsLend.Models
 {
     public class Borrower
     {
-        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Nome é obrigatorio")]
