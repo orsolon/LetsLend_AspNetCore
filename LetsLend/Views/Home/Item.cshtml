@@ -1,41 +1,60 @@
-﻿@{
-    ViewData["Title"] = "Meus itens";
-}
+﻿@model ItemRepository
+
 <div class="text-center">
     <h1 class="display-4">Itens</h1>
-    <p class="ml-auto mt-2">Cadastrar Item <a href="https://docs.microsoft.com/aspnet/core"></a>.</p>
-    <p class="mt-2">Relatório de itens Cadastradas:</p>
-    <div>
-        <table class="table">
-            <thead>
+    <a asp-action="ItemRegister" class="align-self-start">Cadastre um novo Item</a>
+    <h5>Itens emprestados:</h5>
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Disponibilidade</th>
+                <th scope="col">Emprestado para</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in ItemRepository.Items)
+            {
+                /*
+                var cssClass = !string.IsNullOrWhiteSpace(Model.Search) && confirmacao.Nome.Contains(Model.Search, StringComparison.InvariantCultureIgnoreCase) ? "text-info" : "";
+                 var cssConfirmacao = confirmacao.Confirmado == true ? "text-primary" : "text-danger";
+                */
+
+
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Item</th>
-                    <th scope="col">Emprestado</th>
-                    <th scope="col">Data Retorno</th>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.IsAvaiable</td>
+                    @{
+                        if (item.ItemBorrower == null)
+                        {
+                            <td><a class="btn btn-success" asp-controller="Home"> Emprestar para </a></td>
+                        }
+                        else
+                        {
+                            <td>
+                                @item.ItemBorrower
+                            </td>
+                        }
+                    }
+                    <td><a class="btn btn-info" asp-controller="Home" asp-action="Edicao" asp-route-Id="@item.Id">Editar</a></td>
+                    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Remocao" asp-route-Id="@item.Id">Remover</a></td>
+
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Livro de Asp</td>
-                    <td>Mario</td>
-                    <td>25/09/2021</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Calculadora</td>
-                    <td>Luana</td>
-                    <td>27/10/2021</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Caneta</td>
-                    <td>Livre</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            }
+
+        </tbody>
+
+    </table>
+
+
 
 </div>

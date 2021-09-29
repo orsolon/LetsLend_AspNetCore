@@ -40,6 +40,25 @@ namespace LetsLend.Controllers
             return View();
         }
 
+        public IActionResult ItemRegister()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ItemRegister(Item item)
+        {
+
+            if (ModelState.IsValid)
+            {
+                ItemRepository.AddItem(item);
+                return RedirectToAction("Item");
+            }
+
+            return View(item);
+        }
+
         [HttpPost]
         public IActionResult UserRegister(Borrower user)
         {
