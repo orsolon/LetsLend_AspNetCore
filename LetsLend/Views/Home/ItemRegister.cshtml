@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Cadastro de itens";
+}
+
+@model Item
+
+<h2 class="text-center">Cadastro de item</h2>
+<div class="container">
+    <form method="post" asp-controller="Home" asp-action="ItemRegister">
+
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-group">
+            <label asp-for="Name">Nome:</label>
+            <input asp-for="Name" class="form-control">
+            <span asp-validation-for="Name" class="form-text text-muted"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description">Descrição:</label>
+            <input asp-for="Description" class="form-control">
+            <span asp-validation-for="Description" class="form-text text-muted"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="IsAvaiable">Disponibilidade</label>
+            <input asp-for="IsAvaiable" class="form-control">
+            <span asp-validation-for="IsAvaiable" class="form-text text-muted"></span>
+        </div>
+
+        <button type="submit" class="btn btn-outline-dark">Submit</button>
+    </form>
+</div>

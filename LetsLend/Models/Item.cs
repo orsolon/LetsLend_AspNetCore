@@ -7,8 +7,10 @@ namespace LetsLend.Models
         [Key]
         public int Id { get; set; }
         [Required(ErrorMessage ="Nome é obrigatorio")]
-        public string Nome { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
+        [Required(ErrorMessage = "Nome é obrigatorio")]
         public bool IsAvaiable { get; set; }
+        public string ItemBorrower { get; set; }
     }
 }
