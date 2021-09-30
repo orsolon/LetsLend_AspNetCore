@@ -23,27 +23,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>(11)96666-1122</td>
-                <td>mark@gmail.com</td>
-                <td>
-                    <button type="button" class="btn btn-info">Editar</button>
-                    <button type="button" class="btn btn-danger">Deletar</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>(11)98877-6655</td>
-                <td>jacog@gmail.com</td>
-                <td>
-                    <button type="button" class="btn btn-info">Editar</button>
-                    <button type="button" class="btn btn-danger">Deletar</button>
-                </td>
-            </tr>
-            
+            @foreach (var user in UserRepository.Users)
+            {
+                <tr>
+                    <th scope="row">@user.Id</th>
+                    <td>@user.Name</td>
+                    <td>@user.Telefone</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <button type="button" class="btn btn-info">Editar</button>
+                        <button type="button" class="btn btn-danger">Deletar</button>
+                    </td>
+                </tr>
+            }
+
         </tbody>
     </table>
 </div>

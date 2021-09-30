@@ -65,10 +65,10 @@ namespace LetsLend.Controllers
             if (ModelState.IsValid)
             {
                 UserRepository.AddUser(user);
-                return View();
+                return RedirectToAction("Borrower");
             }
            
-            return View();
+            return View(user);
         }
 
 
