@@ -19,8 +19,8 @@ namespace LetsLend.Models
             _context.Items.Add(item);
 
             /* validações */
-            if (item.IsAvaiable == false)
-                item.ItemBorrower = "Livre";
+            /*if (item.IsAvaiable = false)
+                item.ItemBorrower = "Livre";*/
 
             _context.SaveChanges();
         }

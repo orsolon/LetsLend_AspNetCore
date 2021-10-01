@@ -42,21 +42,37 @@ namespace LetsLend.Controllers
             return View();
         }
 
+        public IActionResult ItemRegister()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult ItemRegister(Item item)
         {
-            /* implementar banco de dados*/
 
             if (ModelState.IsValid)
             {
-                //ItemRepository.AddItem(item);
-
                 _repositoryItem.AddItem(item);
                 return RedirectToAction("Item");
             }
-            return ItemRegister();
+            return View(item);
         }
 
+
+        public IActionResult RemoveItem(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RemoveItem(Item item)
+        {
+            _repositoryItem.RemoveItem(item);
+           
+            return RedirectToAction("Item");
+           
+        }
 
         public IActionResult Borrower()
         {
