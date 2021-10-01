@@ -2,12 +2,13 @@
 
 <div class="text-center">
     <h1 class="display-4">Itens</h1>
-    <div class="d-flex justify-content-start m-5" >
+    <div class="d-flex justify-content-start m-5">
         <a asp-action="ItemRegister" class="align-self-start">Cadastre um novo Item</a>
     </div>
-    
+
     <h5>Itens emprestados:</h5>
 
+   
     <table class="table">
 
         <thead>
@@ -21,43 +22,10 @@
                 <th></th>
             </tr>
         </thead>
-
-        <tbody>
-            @foreach (var item in ItemRepository.Items)
-            {
-                /*
-                var cssClass = !string.IsNullOrWhiteSpace(Model.Search) && confirmacao.Nome.Contains(Model.Search, StringComparison.InvariantCultureIgnoreCase) ? "text-info" : "";
-                 var cssConfirmacao = confirmacao.Confirmado == true ? "text-primary" : "text-danger";
-                */
-
-
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Name</td>
-                    <td>@item.Description</td>
-                    <td>@item.IsAvaiable</td>
-                    @{
-                        if (item.ItemBorrower == null)
-                        {
-                            <td><a class="btn btn-success" asp-controller="Home"> Emprestar para </a></td>
-                        }
-                        else
-                        {
-                            <td>
-                                @item.ItemBorrower
-                            </td>
-                        }
-                    }
-                    <td><a class="btn btn-info" asp-controller="Home" asp-action="Edicao" asp-route-Id="@item.Id">Editar</a></td>
-                    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Remocao" asp-route-Id="@item.Id">Remover</a></td>
-
-                </tr>
-            }
-
-        </tbody>
+       
 
     </table>
 
-
+    -->
 
 </div>

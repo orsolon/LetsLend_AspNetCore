@@ -1,16 +1,35 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace LetsLend.Models
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
-        private static List<Borrower> users = new List<Borrower>();
+        private readonly AppDbContext _context;
 
-        public static IEnumerable<Borrower> Users { get => users; }
-
-        public static void AddUser(Borrower user)
+        public UserRepository(AppDbContext context)
         {
-            users.Add(user);
+            _context = context;
+        }
+
+        public IQueryable<Borrower> Users { get => _context.Users; }
+
+        public void AddBorrower(Borrower user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
+        }
+
+        public void RemoveBorrower(Borrower user)
+        {
+            _context.Users.Update(user);
+            _context.SaveChanges();
+        }
+
+        public void UpdateBorrower(Borrower user)
+        {
+            _context.Users.Remove(user);
+            _context.SaveChanges();
         }
     }
 }

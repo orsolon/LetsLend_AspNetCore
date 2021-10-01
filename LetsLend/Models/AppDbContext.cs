@@ -8,7 +8,7 @@ namespace LetsLend.Models
         {
 
         }
-        public DbSet<Borrower> Pessoas { get; set; }
-        public DbSet<Item> Itens { get; set; }
+        public DbSet<Borrower> Users { get; set; }
+        public DbSet<Item> Items { get; set; }
     }
 }
