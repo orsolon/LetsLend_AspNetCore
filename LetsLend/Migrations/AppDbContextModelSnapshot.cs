@@ -39,7 +39,7 @@ namespace LetsLend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pessoas");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("LetsLend.Models.Item", b =>
@@ -55,13 +55,16 @@ namespace LetsLend.Migrations
                     b.Property<bool>("IsAvaiable")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("ItemBorrower")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Itens");
+                    b.ToTable("Items");
                 });
 #pragma warning restore 612, 618
         }

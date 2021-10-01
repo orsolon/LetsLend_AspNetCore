@@ -11,17 +11,15 @@ namespace LetsLend.Models
         {
             _context = context;
         }
-
         
         public IQueryable<Item> Items { get => _context.Items; }
-
 
         public void AddItem(Item item)
         {
             _context.Items.Add(item);
 
             /* validações */
-            if (item.IsAvaiable = false)
+            if (item.IsAvaiable == false)
                 item.ItemBorrower = "Livre";
 
             _context.SaveChanges();

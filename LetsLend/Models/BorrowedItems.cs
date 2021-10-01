@@ -8,7 +8,7 @@ namespace LetsLend.Models
     {
         public BorrowedItems()
         {
-            this.Itens = new List<Item>();
+            this.Items = new List<Item>();
         }
         [Key]
         public int Id { get; set; }
@@ -20,6 +20,6 @@ namespace LetsLend.Models
 
         [DataType(DataType.Date)]
         public DateTime ReturnDate { get; set; }
-        public ICollection<Item> Itens { get; set; }
+        public ICollection<Item> Items { get; set; }
     }
 }

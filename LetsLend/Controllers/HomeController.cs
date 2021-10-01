@@ -1,6 +1,8 @@
 ﻿using LetsLend.Models;
+using LetsLend.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace LetsLend.Controllers
@@ -27,8 +29,34 @@ namespace LetsLend.Controllers
 
         public IActionResult Item()
         {
+            var viewModel = new ItemViewModel()
+            {
+                Items = _repositoryItem.Items
+        };
+
+            return View(viewModel);
+        }
+
+        public IActionResult ItemRegister()
+        {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult ItemRegister(Item item)
+        {
+            /* implementar banco de dados*/
+
+            if (ModelState.IsValid)
+            {
+                //ItemRepository.AddItem(item);
+
+                _repositoryItem.AddItem(item);
+                return RedirectToAction("Item");
+            }
+            return ItemRegister();
+        }
+
 
         public IActionResult Borrower()
         {

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LetsLend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210929141944_Inicial")]
+    [Migration("20211001214431_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,7 +41,7 @@ namespace LetsLend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pessoas");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("LetsLend.Models.Item", b =>
@@ -57,13 +57,16 @@ namespace LetsLend.Migrations
                     b.Property<bool>("IsAvaiable")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("ItemBorrower")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Itens");
+                    b.ToTable("Items");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,8 @@
-﻿@model ItemRepository
+﻿@{
+    ViewData["Title"] = "Itens cadastrados";
+}
+
+@model LetsLend.ViewModels.ItemViewModel
 
 <div class="text-center">
     <h1 class="display-4">Itens</h1>
@@ -8,7 +12,7 @@
 
     <h5>Itens emprestados:</h5>
 
-   
+
     <table class="table">
 
         <thead>
@@ -22,10 +26,44 @@
                 <th></th>
             </tr>
         </thead>
-       
+
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+
+                    <!-- substituir o item abaixo por um texto, mostrando a disponibilidade, seguido de um botão togle.
+                    A alteração para indisponibilidade deve estar condicionada ao item não estar emprestado-->
+                    <td>@item.IsAvaiable</td>
+
+                    <!-- A possibilidade de se emprestar um item, deve estar condicionada ao item estar disponibilizado para ser emprestado-->
+                    @{
+                        if (item.ItemBorrower == null)
+                        {
+                            <td><a class="btn btn-success" asp-controller="Home"> Emprestar para </a></td>
+                        }
+                        else
+                        {
+                            <td>
+                                @item.ItemBorrower
+                            </td>
+                        }
+                    }
+                    <!-- <td><a class="btn btn-info" asp-controller="Home" asp-action="Edicao" asp-route-Id="@item.Id">Editar</a></td>  -->
+
+                    <td><a class="btn btn-danger" asp-action="RemoveItem" asp-route-Id="@item.Id">Remover</a></td>
+                </tr>
+
+            }
+
+
+
+        </tbody>
 
     </table>
 
-    -->
 
 </div>
