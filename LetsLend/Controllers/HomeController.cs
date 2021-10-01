@@ -30,6 +30,38 @@ namespace LetsLend.Controllers
             return View();
         }
 
+        public IActionResult ItemRegister()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ItemRegister(Item item)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _repositoryItem.AddItem(item);
+                return RedirectToAction("Item");
+            }
+            return View(item);
+        }
+
+
+        public IActionResult RemoveItem(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RemoveItem(Item item)
+        {
+            _repositoryItem.RemoveItem(item);
+           
+            return RedirectToAction("Item");
+           
+        }
+
         public IActionResult Borrower()
         {
             return View();
