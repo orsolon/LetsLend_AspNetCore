@@ -25,7 +25,12 @@ namespace LetsLend.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var viewModel = new ItemViewModel()
+            {
+                Items = _repositoryItem.Items
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult Item()

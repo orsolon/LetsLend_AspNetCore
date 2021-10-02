@@ -13,28 +13,7 @@
 
 <h2 class="text-center">Emprestar item</h2>
 <div class="container">
-    <form method="post" asp-controller="Home" asp-action="ToBorrowItem">
+    
 
-        <div asp-validation-summary="All"></div>
-
-        <div class="form-group">
-            <label asp-for="Name" >Cliente:</label>
-
-
-            <select asp-for="Name" asp-items=""></select>
-
-
-
-            <input asp-for="Name" class="form-control">
-            <span asp-validation-for="Name" class="form-text text-muted"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Description">Data de devolução:</label>
-            <input asp-for="Description" class="form-control">
-            <span asp-validation-for="Description" class="form-text text-muted"></span>
-        </div>
-
-        <button type="submit" class="btn btn-outline-dark">Submit</button>
-    </form>
+      
 </div>
