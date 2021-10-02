@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace LetsLend.Controllers
 {
@@ -12,14 +13,14 @@ namespace LetsLend.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IRepositoryItem _repositoryItem;
         private readonly IUserRepository _repositoryUser;
+        private readonly IBorrowedItemsRepository _repositoryBorrowedItems;
+        
 
         public HomeController(ILogger<HomeController> logger, IRepositoryItem repositoryItem, IUserRepository repositoryUser)
         {
             _logger = logger;
             _repositoryItem = repositoryItem;
             _repositoryUser = repositoryUser;
-
-
         }
 
         public IActionResult Index()
@@ -42,11 +43,6 @@ namespace LetsLend.Controllers
             return View();
         }
 
-        public IActionResult ItemRegister()
-        {
-            return View();
-        }
-
         [HttpPost]
         public IActionResult ItemRegister(Item item)
         {
@@ -57,6 +53,16 @@ namespace LetsLend.Controllers
                 return RedirectToAction("Item");
             }
             return View(item);
+        }
+
+        public IActionResult ToBorrowItem(int id)
+        {
+            var emprestando = _repositoryBorrowedItems.BorrowedItems.FirstOrDefault(borrowedItem => borrowedItem.Id == id);
+
+            if (emprestando == null)
+                return RedirectToAction("Item");
+
+            return View(emprestando);
         }
 
 
@@ -76,8 +82,49 @@ namespace LetsLend.Controllers
 
         public IActionResult Borrower()
         {
-            return View();
+            var viewModel = new BorrowerViewModel()
+            {
+                Borrowers = _repositoryUser.Users
+            };
+            return View(viewModel);
         }
+
+        public IActionResult Edit(int id)
+        {
+            var editando = _repositoryUser.Users.FirstOrDefault(users => users.Id == id);
+
+            if (editando == null)
+                return RedirectToAction("Borrower");
+
+            return View(editando);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Borrower borrower)
+        {
+            _repositoryUser.UpdateBorrower(borrower);
+
+            return RedirectToAction("Borrower");
+        }
+
+        public IActionResult Remove(int id)
+        {
+            var removendo = _repositoryUser.Users.FirstOrDefault(users => users.Id == id);
+
+            if (removendo == null)
+                return RedirectToAction("Borrower");
+
+            return View(removendo);
+        }
+
+        [HttpPost]
+        public IActionResult Remove(Borrower borrower)
+        {
+            _repositoryUser.RemoveBorrower(borrower);
+
+            return RedirectToAction("Borrower");
+        }
+
 
         public ViewResult Reports()
         {
@@ -96,26 +143,14 @@ namespace LetsLend.Controllers
             if (ModelState.IsValid)
             {
                 _repositoryUser.AddBorrower(user);
-                return View();
+                return RedirectToAction("Borrower");
             }
 
-            return View();
+            return View(user);
         }
 
-        public IActionResult Edit(Borrower user)
-        {
 
-            
-            return View();
 
-        }
-        [HttpPost]
-        public IActionResult Edit()
-        {
-            
-
-            return RedirectToAction();
-        }
 
 
 

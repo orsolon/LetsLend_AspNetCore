@@ -31,7 +31,8 @@ namespace LetsLend
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddScoped<IRepositoryItem, ItemRepository>();
-            services.AddScoped<IUserRepository, UserRepository >();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IBorrowedItemsRepository, BorrowedItemsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

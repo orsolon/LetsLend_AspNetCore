@@ -7,6 +7,7 @@ namespace LetsLend.Models
     public class ItemRepository : IRepositoryItem
     {
         private readonly AppDbContext _context;
+
         public ItemRepository(AppDbContext context)
         {
             _context = context;
