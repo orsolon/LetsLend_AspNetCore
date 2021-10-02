@@ -15,7 +15,7 @@
     <div class="container">
         @foreach (var item in Model.Items)
         {
-            if (item.IsAvaiable == true)
+            if (item.IsAvaiable == true && item.ItemBorrower == null)
             {
                 <div class="card shadow-sm mb-2 bg-body rounded">
                     <div class="card-body"><h5>@item.Name</h5></div>
