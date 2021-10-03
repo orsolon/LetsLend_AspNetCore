@@ -40,6 +40,11 @@ namespace LetsLend.Models
             //items.Remove(item);
         }
 
+        public int CountItem()
+        {
+            return Items.Count<Item>();
+        }
+
 
     }
 }

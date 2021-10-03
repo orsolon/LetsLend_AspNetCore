@@ -33,5 +33,10 @@ namespace LetsLend.Models
             _context.Borrowers.Update(user);
             _context.SaveChanges();
         }
+
+        public int CountUser()
+        {
+            return Users.Count<Borrower>();
+        }
     }
 }

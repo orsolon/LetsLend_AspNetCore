@@ -11,5 +11,6 @@ namespace LetsLend.Models
         void AddItem(Item item);
         void UpdateItem(Item item);
         void RemoveItem(Item item);
+        int CountItem();
     }
 }

@@ -11,6 +11,7 @@ namespace LetsLend.Models
         void AddBorrower(Borrower user);
         void UpdateBorrower(Borrower user);
         void RemoveBorrower(Borrower user);
+        int CountUser();
     }
 }
 
