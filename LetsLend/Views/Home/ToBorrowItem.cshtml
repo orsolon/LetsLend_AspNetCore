@@ -4,6 +4,7 @@
 
 @model BorrowedItems
 
+
 <h2 class="text-center">Emprestar item</h2>
     <div class="container">
 
@@ -21,12 +22,6 @@
                 <label asp-for="BorrowerId">Id do cliente:</label>
                 <input asp-for="BorrowerId" class="form-control">
                 <span asp-validation-for="BorrowerId" class="form-text text-muted"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="CatchDate">Momento da cautela:</label>
-                <input asp-for="CatchDate = @System.DateTime.Now" class="form-control">
-                <span asp-validation-for="CatchDate" class="form-text text-muted"></span>
             </div>
 
             <div class="form-group">

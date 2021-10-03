@@ -40,10 +40,6 @@ namespace LetsLend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BorrowerId");
-
-                    b.HasIndex("ItemId");
-
                     b.ToTable("BorrowedItems");
                 });
 
@@ -78,9 +74,6 @@ namespace LetsLend.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BorrowedItemsId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -96,40 +89,7 @@ namespace LetsLend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BorrowedItemsId");
-
                     b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("LetsLend.Models.BorrowedItems", b =>
-                {
-                    b.HasOne("LetsLend.Models.Borrower", "Borrower")
-                        .WithMany()
-                        .HasForeignKey("BorrowerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LetsLend.Models.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Borrower");
-
-                    b.Navigation("Item");
-                });
-
-            modelBuilder.Entity("LetsLend.Models.Item", b =>
-                {
-                    b.HasOne("LetsLend.Models.BorrowedItems", null)
-                        .WithMany("Items")
-                        .HasForeignKey("BorrowedItemsId");
-                });
-
-            modelBuilder.Entity("LetsLend.Models.BorrowedItems", b =>
-                {
-                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

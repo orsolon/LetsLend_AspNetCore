@@ -1,0 +1,37 @@
+﻿@model Item
+
+<h1>Edição de Clientes!</h1>
+
+<div class="container">
+    <form method="post" asp-action="EditItem" asp-controller="home">
+
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-group">
+            <label asp-for="Name">Nome:</label>
+            <input asp-for="Name" class="form-control">
+            <span asp-validation-for="Name" class="form-text text-muted"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description">Descrição:</label>
+            <input asp-for="Description" class="form-control">
+            <span asp-validation-for="Description" class="form-text text-muted"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="IsAvaiable">Disponibilidade</label>
+            <input asp-for="IsAvaiable" class="form-control">
+            <span asp-validation-for="IsAvaiable" class="form-text text-muted"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ItemBorrower">Emprestado para:</label>
+            <input asp-for="ItemBorrower" class="form-control" disabled>
+            <span asp-validation-for="ItemBorrower" class="form-text text-muted"></span>
+        </div>
+
+        <button type="submit" class="btn btn-outline-dark">Salvar</button>
+
+    </form>
+</div>

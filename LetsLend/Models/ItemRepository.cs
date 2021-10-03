@@ -18,13 +18,15 @@ namespace LetsLend.Models
         public void AddItem(Item item)
         {
             _context.Items.Add(item);
-
-            /* validações */
-            /*if (item.IsAvaiable = false)
-                item.ItemBorrower = "Livre";*/
-
             _context.SaveChanges();
         }
+
+        public void ChangeItemBorrower(int itemId, string borrowerName)
+        {
+            _context.Items.FirstOrDefault(x => x.Id == itemId).ItemBorrower = borrowerName;
+            _context.SaveChanges();
+        }
+
 
         public void UpdateItem(Item item)
         {
@@ -36,10 +38,11 @@ namespace LetsLend.Models
         {
             _context.Items.Remove(item);
             _context.SaveChanges();
-
-            //items.Remove(item);
         }
 
-
+        public void ChangeAvailability(Item item)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

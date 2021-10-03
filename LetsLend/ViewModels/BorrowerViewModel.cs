@@ -13,7 +13,6 @@ namespace LetsLend.ViewModels
         public string Search { get; set; }
 
         public IEnumerable<Borrower> Borrowers { get; set; }
-
     }
 }
 

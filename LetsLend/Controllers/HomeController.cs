@@ -61,45 +61,23 @@ namespace LetsLend.Controllers
             return View(item);
         }
 
-
-        //public IActionResult ToBorrowItem()
-        //{
-        //    _repositoryBorrowedItems.AddBorrow();
-        //    var emprestando = _repositoryBorrowedItems.BorrowedItems.Last();
-
-        //    //if (emprestando == null)
-        //    //    return RedirectToAction("Item");
-
-        //    return View(emprestando);
-        //}
-
-        public IActionResult ToBorrowItem()
+        public IActionResult EditItem(int id)
         {
-            return View();
+            var editando = _repositoryItem.Items.FirstOrDefault(item => item.Id == id);
+
+            if (editando == null)
+                return RedirectToAction("Item");
+
+            return View(editando);
         }
 
         [HttpPost]
-        public IActionResult ToBorrowItem(BorrowedItems borrowedItem)
+        public IActionResult EditItem(Item item)
         {
-            if (ModelState.IsValid)
-            {
-                _repositoryBorrowedItems.AddBorrowedItem(borrowedItem);
-                return RedirectToAction("Item");
-            }
-            return View(borrowedItem);
+            _repositoryItem.UpdateItem(item);
+
+            return RedirectToAction("Item");
         }
-
-        //[HttpPost]
-        //public IActionResult ToBorrowItem(int id)
-        //{
-        //    var emprestando = _repositoryBorrowedItems.BorrowedItems.FirstOrDefault(borrowedItem => borrowedItem.Id == id);
-
-        //    if (emprestando == null)
-        //        return RedirectToAction("Item");
-
-        //    return View(emprestando);
-        //}
-
 
         public IActionResult RemoveItem(int id)
         {
@@ -119,7 +97,31 @@ namespace LetsLend.Controllers
             return RedirectToAction("Item");
         }
 
+        public IActionResult ToBorrowItem( )
+        {         
+            return View();       
+        }
 
+        [HttpPost]
+        public IActionResult ToBorrowItem(BorrowedItems borrowedItem)
+        {
+            if (ModelState.IsValid)
+            {
+                //validação impedindo emprestar o mesmo item mais de uma vez
+                _repositoryBorrowedItems.AddBorrowedItem(borrowedItem);
+                var itemEmprestado = _repositoryBorrowedItems.BorrowedItems.OrderBy(s => s.Id).Last();
+                var idItem = itemEmprestado.ItemId;
+                var idClient = itemEmprestado.BorrowerId;
+                var nomeCliente = _repositoryUser.Users.FirstOrDefault(x => x.Id == idClient).Name;
+
+                // mudar parametro do borrowername do item
+                var itemEmprestado2 = _repositoryItem.Items.FirstOrDefault(x => x.Id == idItem);
+                _repositoryItem.ChangeItemBorrower(idItem, nomeCliente);
+
+                return RedirectToAction("Item");
+            }
+            return View(borrowedItem);
+        }
 
         public IActionResult Borrower()
         {
@@ -189,11 +191,6 @@ namespace LetsLend.Controllers
 
             return View(user);
         }
-
-
-
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

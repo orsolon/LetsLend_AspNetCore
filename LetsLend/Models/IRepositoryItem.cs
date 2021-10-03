@@ -10,6 +10,8 @@ namespace LetsLend.Models
         IQueryable<Item> Items { get; }
         void AddItem(Item item);
         void UpdateItem(Item item);
+        void ChangeAvailability(Item item);
+        void ChangeItemBorrower(int itemId, string borrowerName);
         void RemoveItem(Item item);
     }
 }

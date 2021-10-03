@@ -14,20 +14,22 @@ namespace LetsLend.Models
             _context = context;
         }
 
+        public IQueryable<Item> AvailableItems { get => _context.Items.Where(item => item.IsAvaiable == true); }
+
 
         public IQueryable<BorrowedItems> BorrowedItems { get => _context.BorrowedItems;    }
 
-
-
-
-
-
-
-
-    public void AddBorrowedItem(BorrowedItems borrowedItem)
+        public void AddBorrowedItem(BorrowedItems borrowedItem)
         {
+            _context.BorrowedItems.Add(borrowedItem);
+            _context.SaveChanges();
+            _context.BorrowedItems.OrderBy(s => s.Id).Last().CatchDate = DateTime.Now;
+            _context.SaveChanges();
+        }
 
-            _context.BorrowedItems.Add(new BorrowedItems());
+        public void UpdateBorrowedItem(BorrowedItems borrowedItem, string itemName)
+        {
+            _context.BorrowedItems.Update(borrowedItem );
             _context.SaveChanges();
         }
 

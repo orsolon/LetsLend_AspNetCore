@@ -34,9 +34,8 @@
                     <td>@item.Id</td>
                     <td>@item.Name</td>
                     <td>@item.Description</td>
-
                     <!-- substituir o item abaixo por um texto, mostrando a disponibilidade, seguido de um botão togle.
-                    A alteração para indisponibilidade deve estar condicionada ao item não estar emprestado-->
+            A alteração para indisponibilidade deve estar condicionada ao item não estar emprestado-->
                     <td>@item.IsAvaiable</td>
 
                     <!-- A possibilidade de se emprestar um item, deve estar condicionada ao item estar disponibilizado para ser emprestado-->
@@ -52,14 +51,12 @@
                             </td>
                         }
                     }
-                    <!-- <td><a class="btn btn-info" asp-controller="Home" asp-action="Edicao" asp-route-Id="@item.Id">Editar</a></td>  -->
+                     <td><a class="btn btn-info" asp-controller="Home" asp-action="EditItem" asp-route-Id="@item.Id">Editar</a></td>  
 
                     <td><a class="btn btn-danger" asp-action="RemoveItem" asp-route-Id="@item.Id">Remover</a></td>
                 </tr>
 
             }
-
-
 
         </tbody>
 

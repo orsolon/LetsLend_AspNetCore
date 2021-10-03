@@ -865,3 +865,4 @@ C:\Users\denni\Desktop\Programação\Let's Code\8. ASP.NET MVC CORE\Projeto\Lets
 C:\Users\denni\Desktop\Programação\Let's Code\8. ASP.NET MVC CORE\Projeto\LetsLend_AspNetCore\LetsLend\obj\Debug\netcoreapp3.1\LetsLend.pdb
 C:\Users\denni\Desktop\Programação\Let's Code\8. ASP.NET MVC CORE\Projeto\LetsLend_AspNetCore\LetsLend\obj\Debug\netcoreapp3.1\LetsLend.genruntimeconfig.cache
 C:\Users\denni\Desktop\Programação\Let's Code\8. ASP.NET MVC CORE\Projeto\LetsLend_AspNetCore\LetsLend\obj\Debug\netcoreapp3.1\Razor\Views\Home\RemoveItem.cshtml.g.cs
+C:\Users\denni\Desktop\Programação\Let's Code\8. ASP.NET MVC CORE\Projeto\LetsLend_AspNetCore\LetsLend\obj\Debug\netcoreapp3.1\Razor\Views\Home\EditItem.cshtml.g.cs
