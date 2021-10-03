@@ -8,7 +8,7 @@ namespace LetsLend.Models
     public interface IBorrowedItemsRepository
     {
         IQueryable<BorrowedItems> BorrowedItems { get; }
-        void AddBorrow(BorrowedItems BorrowedItem);
-        void UpdateBorrow(BorrowedItems BorrowedItem);
+        void AddBorrowedItem(BorrowedItems borrowedItem);
+        void UpdateBorrowedItem(BorrowedItems BorrowedItem);
     }
 }

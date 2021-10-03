@@ -1,19 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-
-@{
+﻿@{
     ViewData["Title"] = "Emprestar item";
 }
 
-@model UserRepository
+@model BorrowedItems
 
 <h2 class="text-center">Emprestar item</h2>
-<div class="container">
-    
+    <div class="container">
 
-      
-</div>
+        <form method="post" asp-controller="Home" asp-action="ToBorrowItem">
+
+            <div asp-validation-summary="All"></div>
+
+            <div class="form-group">
+                <label asp-for="ItemId">Id do item:</label>
+                <input asp-for="ItemId" class="form-control">
+                <span asp-validation-for="ItemId" class="form-text text-muted"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BorrowerId">Id do cliente:</label>
+                <input asp-for="BorrowerId" class="form-control">
+                <span asp-validation-for="BorrowerId" class="form-text text-muted"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CatchDate">Momento da cautela:</label>
+                <input asp-for="CatchDate = @System.DateTime.Now" class="form-control">
+                <span asp-validation-for="CatchDate" class="form-text text-muted"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ReturnDate">Momento da devolução:</label>
+                <input asp-for="ReturnDate" class="form-control">
+                <span asp-validation-for="ReturnDate" class="form-text text-muted"></span>
+            </div>
+
+            <button type="submit" class="btn btn-outline-dark">Submit</button>
+
+        </form>
+
+    </div>

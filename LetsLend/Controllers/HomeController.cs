@@ -16,11 +16,12 @@ namespace LetsLend.Controllers
         private readonly IBorrowedItemsRepository _repositoryBorrowedItems;
         
 
-        public HomeController(ILogger<HomeController> logger, IRepositoryItem repositoryItem, IUserRepository repositoryUser)
+        public HomeController(ILogger<HomeController> logger, IRepositoryItem repositoryItem, IUserRepository repositoryUser, IBorrowedItemsRepository repositoryBorrowedItems)
         {
             _logger = logger;
             _repositoryItem = repositoryItem;
             _repositoryUser = repositoryUser;
+            _repositoryBorrowedItems = repositoryBorrowedItems;
         }
 
         public IActionResult Index()
@@ -60,15 +61,44 @@ namespace LetsLend.Controllers
             return View(item);
         }
 
-        public IActionResult ToBorrowItem(int id)
+
+        //public IActionResult ToBorrowItem()
+        //{
+        //    _repositoryBorrowedItems.AddBorrow();
+        //    var emprestando = _repositoryBorrowedItems.BorrowedItems.Last();
+
+        //    //if (emprestando == null)
+        //    //    return RedirectToAction("Item");
+
+        //    return View(emprestando);
+        //}
+
+        public IActionResult ToBorrowItem()
         {
-            var emprestando = _repositoryBorrowedItems.BorrowedItems.FirstOrDefault(borrowedItem => borrowedItem.Id == id);
-
-            if (emprestando == null)
-                return RedirectToAction("Item");
-
-            return View(emprestando);
+            return View();
         }
+
+        [HttpPost]
+        public IActionResult ToBorrowItem(BorrowedItems borrowedItem)
+        {
+            if (ModelState.IsValid)
+            {
+                _repositoryBorrowedItems.AddBorrowedItem(borrowedItem);
+                return RedirectToAction("Item");
+            }
+            return View(borrowedItem);
+        }
+
+        //[HttpPost]
+        //public IActionResult ToBorrowItem(int id)
+        //{
+        //    var emprestando = _repositoryBorrowedItems.BorrowedItems.FirstOrDefault(borrowedItem => borrowedItem.Id == id);
+
+        //    if (emprestando == null)
+        //        return RedirectToAction("Item");
+
+        //    return View(emprestando);
+        //}
 
 
         public IActionResult RemoveItem(int id)

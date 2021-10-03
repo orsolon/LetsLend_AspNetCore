@@ -15,21 +15,25 @@ namespace LetsLend.Models
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Id do item é obrigatorio")]
         public int ItemId { get; set; }
 
         [ForeignKey("ItemId")]
         public Item Item { get; set; }
 
+        [Required(ErrorMessage = "Id do cliente é obrigatorio")]
         public int BorrowerId { get; set; }
 
         [ForeignKey("BorrowerId")]
         public Borrower Borrower { get; set; }
 
+        [Required(ErrorMessage = "Data de cautela é obrigatória")]
         [DataType(DataType.Date)]
         public DateTime CatchDate { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime ReturnDate { get; set; }
+
         public ICollection<Item> Items { get; set; }
     }
 }

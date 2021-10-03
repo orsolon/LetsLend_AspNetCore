@@ -24,12 +24,14 @@ namespace LetsLend.Models
 
 
 
-    public void AddBorrow(BorrowedItems BorrowedItem)
+    public void AddBorrowedItem(BorrowedItems borrowedItem)
         {
-            throw new NotImplementedException();
+
+            _context.BorrowedItems.Add(new BorrowedItems());
+            _context.SaveChanges();
         }
 
-        public void UpdateBorrow(BorrowedItems BorrowedItem)
+        public void UpdateBorrowedItem(BorrowedItems BorrowedItem)
         {
             throw new NotImplementedException();
         }
