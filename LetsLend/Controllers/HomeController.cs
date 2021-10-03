@@ -103,7 +103,12 @@ namespace LetsLend.Controllers
 
         public IActionResult RemoveItem(int id)
         {
-            return View();
+            var removendo = _repositoryItem.Items.FirstOrDefault(items => items.Id == id);
+
+            if (removendo == null)
+                return RedirectToAction("Item");
+
+            return View(removendo);
         }
 
         [HttpPost]
@@ -112,8 +117,9 @@ namespace LetsLend.Controllers
             _repositoryItem.RemoveItem(item);
            
             return RedirectToAction("Item");
-           
         }
+
+
 
         public IActionResult Borrower()
         {
