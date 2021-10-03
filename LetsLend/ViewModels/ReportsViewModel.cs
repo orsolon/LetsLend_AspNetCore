@@ -13,5 +13,15 @@ namespace LetsLend.ViewModels
         public IEnumerable<Borrower> Borrowers { get; set; }
 
         public IEnumerable<BorrowedItems> BorroweedItems { get; set; }
+
+        //public string GetAtrasados(BorrowedItems BorrowedItem, Item Items)
+        //{
+
+        //    var atraso = BorrowedItem.Id.Equals(Items.Id) && BorrowedItem.ReturnDate < System.DateTime.Now;
+
+        //    return atraso
+
+        //}
     }
 }
+

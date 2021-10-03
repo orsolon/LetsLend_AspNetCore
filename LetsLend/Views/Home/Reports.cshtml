@@ -8,7 +8,7 @@
 <div class="text-center">
 
     <h1 class="display-4">Relatórios</h1>
-   
+
 </div>
 
 <div class="container"></div>
@@ -16,8 +16,16 @@
 <hr />
 <h6>Itens cadastrados: <b class="text-primary"> @ViewBag.Item</b> </h6>
 <hr />
-<h6>Tomadores de empréstimos cadastrados: <b class="text-success">  @ViewBag.User </b> </h6>
+<h6>Tomadores de empréstimos cadastrados: <b class="text-primary">  @ViewBag.User </b> </h6>
 <hr />
-<h6>Quantidade de Objetos emprestasdos: </h6>
+<h6>Quantidade de Objetos emprestados: <b class="text-primary"> @ViewBag.BorrowedItems </b> </h6>
 <hr />
-<h6>Relação de itens com a atraso na devolução:</h6>
+<h6>
+    Relação dos ID dos itens com atraso na devolução:
+</h6>
+<div>
+    @foreach (var item in ViewBag.itensAtrasados)
+    {
+        <p>@item.ItemId</p>
+    }
+</div>

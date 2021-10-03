@@ -194,14 +194,39 @@ namespace LetsLend.Controllers
         {
             var viewModelReport = new ReportsViewModel()
             {
-
+                BorroweedItems = _repositoryBorrowedItems.BorrowedItems,
+                Items = _repositoryItem.Items,
+                Borrowers = _repositoryUser.Users
             };
 
             var count = _repositoryItem.CountItem();
             ViewBag.Item = count;
             var countUser = _repositoryUser.CountUser();
             ViewBag.User = countUser;
-            return View();
+            var countBorrowedItems = _repositoryItem.Items.Where(x => x.ItemBorrower != null).Count();
+            ViewBag.BorrowedItems = countBorrowedItems;
+
+            var itensAtrasados = _repositoryBorrowedItems.BorrowedItems
+                .Where(x => x.ReturnDate < System.DateTime.Now);
+            var idItensAtrasados = itensAtrasados.Select(x => x.ItemId);
+            var itemsEmprestados = _repositoryItem.Items.Where(x => x.ItemBorrower != null);
+
+
+
+            //var itensAtrasados2 = new List<Item>();
+            //foreach (var item in itemsEmprestados.AsEnumerable())
+            //{
+            //    foreach (var id in idItensAtrasados)
+            //        if (item.Id == id)
+            //        {
+            //            itensAtrasados2.Add(item);
+            //        }
+            //}
+            //itensAtrasados2.AsQueryable();
+
+            ViewBag.itensAtrasados = itensAtrasados;
+
+            return View(viewModelReport);
         }
 
        
