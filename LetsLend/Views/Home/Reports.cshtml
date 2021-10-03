@@ -3,15 +3,21 @@
 }
 
 
+@model LetsLend.ViewModels.ReportsViewModel
+
 <div class="text-center">
-   
+
     <h1 class="display-4">Relatórios</h1>
-    <p>Qual Relatório gostaria de fazer?</p>
+   
 </div>
 
-@functions{
-    void DisplayDate(DateTime dt)
-    {
-        <span class="date">@dt.ToString("dddd, dd MMMM yyyy")</span>
-    }
-}
+<div class="container"></div>
+<h3> Você Possue:</h3>
+<hr />
+<h6>Itens cadastrados: <b class="text-primary"> @ViewBag.Item</b> </h6>
+<hr />
+<h6>Tomadores de empréstimos cadastrados: <b class="text-success">  @ViewBag.User </b> </h6>
+<hr />
+<h6>Quantidade de Objetos emprestasdos: </h6>
+<hr />
+<h6>Relação de itens com a atraso na devolução:</h6>
