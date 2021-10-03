@@ -39,7 +39,8 @@ namespace LetsLend.Controllers
             var viewModel = new ItemViewModel()
             {
                 Items = _repositoryItem.Items
-        };
+
+            };
 
             return View(viewModel);
         }
@@ -169,11 +170,7 @@ namespace LetsLend.Controllers
         }
 
 
-        public ViewResult Reports()
-        {
-            return View();
-        }
-
+     
         public IActionResult UserRegister()
         {
 
@@ -191,6 +188,23 @@ namespace LetsLend.Controllers
 
             return View(user);
         }
+
+
+        public IActionResult Reports()
+        {
+            var viewModelReport = new ReportsViewModel()
+            {
+
+            };
+
+            var count = _repositoryItem.CountItem();
+            ViewBag.Item = count;
+            var countUser = _repositoryUser.CountUser();
+            ViewBag.User = countUser;
+            return View();
+        }
+
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

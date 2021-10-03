@@ -44,5 +44,11 @@ namespace LetsLend.Models
         {
             throw new System.NotImplementedException();
         }
+        public int CountItem()
+        {
+            return Items.Count<Item>();
+        }
+
+
     }
 }

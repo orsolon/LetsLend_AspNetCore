@@ -13,5 +13,6 @@ namespace LetsLend.Models
         void ChangeAvailability(Item item);
         void ChangeItemBorrower(int itemId, string borrowerName);
         void RemoveItem(Item item);
+        int CountItem();
     }
 }
