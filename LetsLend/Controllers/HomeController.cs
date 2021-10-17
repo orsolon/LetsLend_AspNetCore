@@ -1,8 +1,8 @@
 ﻿using LetsLend.Models;
 using LetsLend.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -14,7 +14,6 @@ namespace LetsLend.Controllers
         private readonly IRepositoryItem _repositoryItem;
         private readonly IUserRepository _repositoryUser;
         private readonly IBorrowedItemsRepository _repositoryBorrowedItems;
-        
 
         public HomeController(ILogger<HomeController> logger, IRepositoryItem repositoryItem, IUserRepository repositoryUser, IBorrowedItemsRepository repositoryBorrowedItems)
         {
@@ -39,7 +38,6 @@ namespace LetsLend.Controllers
             var viewModel = new ItemViewModel()
             {
                 Items = _repositoryItem.Items
-
             };
 
             return View(viewModel);
@@ -53,7 +51,6 @@ namespace LetsLend.Controllers
         [HttpPost]
         public IActionResult ItemRegister(Item item)
         {
-
             if (ModelState.IsValid)
             {
                 _repositoryItem.AddItem(item);
@@ -94,13 +91,17 @@ namespace LetsLend.Controllers
         public IActionResult RemoveItem(Item item)
         {
             _repositoryItem.RemoveItem(item);
-           
+
             return RedirectToAction("Item");
         }
 
-        public IActionResult ToBorrowItem( )
-        {         
-            return View();       
+        public IActionResult ToBorrowItem()
+        {
+            ViewBag.Usuarios =
+                _repositoryUser.Users.Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()});
+            ViewBag.Items = _repositoryItem.Items.Where(x => x.IsAvaiable).Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()});
+
+            return View();
         }
 
         [HttpPost]
@@ -169,11 +170,8 @@ namespace LetsLend.Controllers
             return RedirectToAction("Borrower");
         }
 
-
-     
         public IActionResult UserRegister()
         {
-
             return View();
         }
 
@@ -188,7 +186,6 @@ namespace LetsLend.Controllers
 
             return View(user);
         }
-
 
         public IActionResult Reports()
         {
@@ -211,8 +208,6 @@ namespace LetsLend.Controllers
             var idItensAtrasados = itensAtrasados.Select(x => x.ItemId);
             var itemsEmprestados = _repositoryItem.Items.Where(x => x.ItemBorrower != null);
 
-
-
             //var itensAtrasados2 = new List<Item>();
             //foreach (var item in itemsEmprestados.AsEnumerable())
             //{
@@ -228,8 +223,6 @@ namespace LetsLend.Controllers
 
             return View(viewModelReport);
         }
-
-       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
